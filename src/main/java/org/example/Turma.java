@@ -27,12 +27,11 @@ public class Turma {
             float n1 = lerNota("N1:", scanner);
             float n2 = lerNota("N2:", scanner);
             float n3 = lerNota("N3:", scanner);
-            float media = (n1 + n2 + n3) / 3;
-
+            float media = calcularMedia(n1, n2, n3);
             if (media < 7.0) {
                 float n4 = lerNota("N4 (devido à média abaixo de 7):", scanner);
                 // Remover a menor nota
-                media = (media - Math.min(n1, Math.min(n2, n3))) + n4;
+                media = calcularMediaAposSubstituicao(n1, n2, n3, n4);
             }
 
             Aluno aluno = new Aluno("Aluno " + (j + 1), n1, n2, n3, media);
@@ -47,7 +46,7 @@ public class Turma {
         }
     }
 
-    private float lerNota(String mensagem, Scanner scanner) {
+    public float lerNota(String mensagem, Scanner scanner) {
         float nota;
         do {
             System.out.print(mensagem);
@@ -57,5 +56,18 @@ public class Turma {
             }
         } while (nota < 0 || nota > 10);
         return nota;
+    }
+
+    public float calcularMedia(float n1, float n2, float n3) {
+        return (n1 + n2 + n3) / 3;
+    }
+
+    public float calcularMediaAposSubstituicao(float n1, float n2, float n3, float n4) {
+        float menorNota = Math.min(n1, Math.min(n2, n3));
+        return (n1 + n2 + n3 - menorNota + n4) / 3;
+    }
+
+    public int getQtdAlunos() {
+        return qtdAlunos;
     }
 }
