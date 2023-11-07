@@ -9,7 +9,7 @@ public class TurmaTest {
     public void testQuantidadeMaximaAlunoTurma(){
         Turma turma = new Turma();
         turma.setQtdAlunos(-5);
-        Assertions.assertEquals(3, turma.getQtdAlunos());
+        Assertions.assertEquals(1, turma.getQtdAlunos());
     }
 
     @Test
@@ -19,7 +19,7 @@ public class TurmaTest {
         float nota = turma.lerNota("N1:", scanner);
 //        float nota = 7.5F;
         System.out.println(nota);
-        Assertions.assertEquals(7.5, 7.5,0.001); // Verifique se a nota é igual a 7.5 com uma tolerância de 0.01
+        Assertions.assertEquals(7.5, nota,0.001); // Verifique se a nota é igual a 7.5 com uma tolerância de 0.01
     }
 
 
@@ -29,5 +29,7 @@ public class TurmaTest {
         float media = turma.calcularMedia(8,8,8);
         Assertions.assertEquals(8,media);
     }
+
+
 
 }
